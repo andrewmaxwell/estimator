@@ -44,7 +44,7 @@ const Estimator = () => {
         <TableBody>
           {config.items.map(({name, hoursPer, costPer, unit, quantity}) => (
             <TableRow key={name}>
-              <TableCell>
+              <TableCell sx={{width: '10%'}}>
                 <Box display="flex" alignItems="center">
                   <TextField
                     type="number"
@@ -52,25 +52,26 @@ const Estimator = () => {
                     onChange={(e) => setQuantity(name, +e.target.value)}
                     inputProps={{min: 0}}
                     value={quantity}
+                    fullWidth
                   />
                 </Box>
               </TableCell>
-              <TableCell>
+              <TableCell sx={{width: '5%'}}>
                 <IconButton onClick={() => setQuantity(name, quantity + 1)}>
                   <Add />
                 </IconButton>
               </TableCell>
-              <TableCell>
+              <TableCell sx={{width: '5%'}}>
                 {quantity > 0 && (
                   <IconButton onClick={() => setQuantity(name, quantity - 1)}>
                     <Remove />
                   </IconButton>
                 )}
               </TableCell>
-              <TableCell>
+              <TableCell sx={{width: '30%'}}>
                 <Typography>{name}</Typography>
               </TableCell>
-              <TableCell>
+              <TableCell sx={{width: '50%'}}>
                 <Typography>
                   {quantity
                     ? `${quantity} * (${hoursPer} hrs * $${config.hourlyRate.toFixed(2)} / hr + $${costPer.toFixed(2)} / ${unit}) = $${(quantity * (hoursPer * config.hourlyRate + costPer)).toFixed(2)}`
