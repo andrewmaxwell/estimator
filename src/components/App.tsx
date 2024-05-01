@@ -32,7 +32,7 @@ const Estimator = () => {
 };
 
 export const App = () => (
-  <Box sx={{flexGrow: 1, mt: 10, pb: 10}}>
+  <Box sx={{flexGrow: 1, mt: 1, pb: 1}}>
     <Container maxWidth="xl">
       <Estimator />
     </Container>
