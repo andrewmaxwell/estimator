@@ -8,11 +8,15 @@ export const loadData = async () => {
   const response = await fetch(url);
   const {Sheets} = read(await response.arrayBuffer(), {cellDates: true});
 
-  const {hourlyRate} = utils.sheet_to_json(Sheets.vars)[0] as any;
   return {
-    hourlyRate,
+    ...(utils.sheet_to_json(Sheets.vars)[0] as any),
     items: utils
       .sheet_to_json(Sheets.items)
-      .map((row: any) => ({...row, quantity: 0})),
+      .map((row: any) => ({...row, quantity: 0}))
+      .flatMap((row) => [
+        {...row, location: 'front'},
+        {...row, location: 'back'},
+      ])
+      .map((row, index) => ({...row, index})),
   } as Config;
 };

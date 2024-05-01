@@ -1,4 +1,4 @@
-type Item = {
+export type Item = {
   name: string;
   category: string;
   subCategory: string;
@@ -6,9 +6,12 @@ type Item = {
   costPer: number;
   unit: string;
   quantity: number;
+  location: 'front' | 'back';
+  index: number;
 };
 
 export type Config = {
   items: Item[];
   hourlyRate: number;
+  estimatorFee: number;
 };

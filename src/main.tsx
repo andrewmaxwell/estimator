@@ -1,6 +1,6 @@
 import {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
-import {App} from './App.tsx';
+import {App} from './components/App.tsx';
 import {createTheme, ThemeProvider, CssBaseline} from '@mui/material';
 
 const darkTheme = createTheme({palette: {mode: 'dark'}});
