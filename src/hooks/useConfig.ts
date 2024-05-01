@@ -10,19 +10,19 @@ export const useConfig = () => {
 
   // console.log('config', config);
 
-  const setQuantity = useCallback(
-    (index: number, quantity: number) =>
+  const setItemValue = useCallback(
+    (propName: string, index: number, value: number) =>
       setConfig((config) => {
         if (!config) return;
         return {
           ...config,
           items: config.items.map((row, i) =>
-            i === index ? {...row, quantity} : row,
+            i === index ? {...row, [propName]: value} : row,
           ),
         };
       }),
     [],
   );
 
-  return {config, setQuantity};
+  return {config, setItemValue};
 };

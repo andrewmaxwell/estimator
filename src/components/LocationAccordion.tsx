@@ -6,16 +6,20 @@ import {getItemCounts} from '../utils/getItemCounts';
 
 type LocationAccordionProps = {
   location: string;
+  category: string;
   config: Config;
-  setQuantity: (index: number, quantity: number) => void;
+  setItemValue: (prop: string, index: number, quantity: number) => void;
 };
 
 export const LocationAccordion = ({
   location,
+  category,
   config,
-  setQuantity,
+  setItemValue,
 }: LocationAccordionProps) => {
-  const items = config.items.filter((r) => r.location === location);
+  const items = config.items.filter(
+    (r) => r.location === location && r.category === category,
+  );
   const counts = getItemCounts(items);
   return (
     <Accordion>
@@ -23,10 +27,10 @@ export const LocationAccordion = ({
         expandIcon={<ExpandMore />}
         sx={{textTransform: 'capitalize'}}
       >
-        {location} Yard Installation {counts ? `(${counts})` : ''}
+        {`${location} Yard ${category} ${counts ? `(${counts})` : ''}`}
       </AccordionSummary>
       <AccordionDetails>
-        <ItemTable items={items} config={config} setQuantity={setQuantity} />
+        <ItemTable items={items} config={config} setItemValue={setItemValue} />
       </AccordionDetails>
     </Accordion>
   );

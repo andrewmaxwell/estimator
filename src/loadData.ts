@@ -12,7 +12,7 @@ export const loadData = async () => {
     ...(utils.sheet_to_json(Sheets.vars)[0] as any),
     items: utils
       .sheet_to_json(Sheets.items)
-      .map((row: any) => ({...row, quantity: 0}))
+      .map((row: any) => ({...row, quantity: 0, eighths: 0}))
       .flatMap((row) => [
         {...row, location: 'front'},
         {...row, location: 'back'},
