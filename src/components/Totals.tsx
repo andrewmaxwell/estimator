@@ -3,6 +3,7 @@ import {Config} from '../types';
 import {formatMoney} from '../utils/formatMoney';
 import {getItemCounts} from '../utils/getItemCounts';
 import {getEstimateTotals} from '../utils/calculations';
+import {formatToNearestEighth} from '../utils/formatToNearestEighth';
 
 type TotalsProps = {
   config: Config;
@@ -21,7 +22,7 @@ export const Totals = ({config}: TotalsProps) => {
       <Typography>Supplies: {getItemCounts(items)}</Typography>
       {!!eighths && (
         <Typography>
-          Trailer Loads: {eighths / 8} (
+          Trailer Loads: {formatToNearestEighth(eighths / 8)} (
           {formatMoney(eighths * dumpFeePerEighth)})
         </Typography>
       )}
